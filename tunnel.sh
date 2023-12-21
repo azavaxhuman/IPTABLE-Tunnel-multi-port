@@ -168,6 +168,11 @@ case $choice in
         echo -e "${GREEN}Resetting IP forwarding status...${RESET}"
         echo "net.ipv4.ip_forward=0" | sudo tee /etc/sysctl.d/30-ip_forward.conf
         sudo sysctl --system
+        echo -e "${GREEN}---------------------------------------------------------${RESET}"
+        echo -e "${GREEN}                                                 ${RESET}"
+        echo -e "${GREEN}                All tables were reset                    ${RESET}"
+        echo -e "${GREEN}                                                 ${RESET}"
+        echo -e "${GREEN}---------------------------------------------------------${RESET}"
         read -p "Back to Main menu? (${GREEN}y${RESET}/${RED}n${RESET}): " answer
         if [ "$answer" == "y" ]; then
         sudo dds-tunnel
@@ -217,7 +222,6 @@ if [ "$answer" == "yes" ]; then
     sudo unlink /usr/local/bin/dds-tunnel
     sudo rm -rf /root/dds-tunnel/
     # اینجا دستورات مورد نظر را قرار دهید
-        echo -e "${RED}... Done !${RESET}"
 else
     # اگر جواب yes نبود، پیام مناسب را نمایش بده
     echo "OK"
