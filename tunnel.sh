@@ -77,6 +77,7 @@ case $choice in
         echo -e "${GREEN}Great ! Multi-Port Tunnel was established${RESET}"
         echo -e "${GREEN}                                                 ${RESET}"
         echo -e "${GREEN}---------------------------------------------------------${RESET}"
+        sudo dds-tunnel
         ;;
     2)
         read -p "${BLUE}Enter the Relay server IP (this Server) address (e.g. 1.1.1.1): ${RESET}" RIP
@@ -109,6 +110,7 @@ case $choice in
         echo -e "${GREEN}The tunnel was established for all ports except $PORTS ${RESET}"
         echo -e "${GREEN}                                                 ${RESET}"
         echo -e "${GREEN}---------------------------------------------------------${RESET}"
+        sudo dds-tunnel
         ;;
      3)
         # Show iptables rules
@@ -118,6 +120,7 @@ case $choice in
         sudo iptables -t nat -L -v --line-numbers
         echo -e "${GREEN}                                                 ${RESET}"
         echo -e "${GREEN}---------------------------------------------------------${RESET}"
+        sudo dds-tunnel
         ;;
     4)
         # Flush all iptables rules
@@ -140,6 +143,8 @@ case $choice in
         echo -e "${GREEN}Resetting IP forwarding status...${RESET}"
         echo "net.ipv4.ip_forward=0" | sudo tee /etc/sysctl.d/30-ip_forward.conf
         sudo sysctl --system
+        sudo dds-tunnel
+
         ;;
     5)  
         echo -e "${CYAN}Exiting...${RESET}"

@@ -7,6 +7,9 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # Install required packages
+echo "Installing required packages..."
+apt update
+apt install -y iptables iptables-persistent
 
 # Create symbolic link for iptables-dds script
 # به داخل پوشه مخزن می‌رویم
