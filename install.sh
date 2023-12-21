@@ -20,6 +20,5 @@ ln -s "$(pwd)/tunnel.sh" /usr/local/bin/dds-tunnel
 
 # تغییر مجوزهای اجرایی اسکریپت
 chmod +x tunnel.sh
-
-
+sudo bash tunnel.sh
 echo "Installation completed. You can now use 'dds-tunnel' command."
