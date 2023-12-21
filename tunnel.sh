@@ -35,7 +35,9 @@ echo "${YELLOW}3. Display tables related to the tunnel${RESET}"
 echo "                                                "
 echo "${YELLOW}4. Flush all iptables rules${RESET}"
 echo "                                                "
-echo "${RED}5. Exit${RESET}"
+echo "${RED}5. Unistall !${RESET}"
+echo "                                                "
+echo "${RED}6. Exit${RESET}"
 echo "                                                "
 read -p "${GREEN}Please select an option: ${RESET}" choice
 
@@ -146,7 +148,51 @@ case $choice in
         sudo dds-tunnel
 
         ;;
-    5)  
+        5)
+        # Flush all iptables rules
+
+        #!/bin/bash
+
+# درخواست ورودی از کاربر
+read -p "Are You Sure to Unistall DDS-Tunnel? (${GREEN}yes${RESET}/${RED}no${RESET}): " answer
+
+# بررسی جواب کاربر
+if [ "$answer" == "yes" ]; then
+    # اگر جواب yes بود، دستورات مورد نظر را اجرا کن
+    echo "Oh ! Ok , No problem!"
+    sudo unlink /usr/local/bin/dds-tunnel
+    sudo rm -rf /root/dds-tunnel/
+    # اینجا دستورات مورد نظر را قرار دهید
+        echo -e "${RED}... Done !${RESET}"
+else
+    # اگر جواب yes نبود، پیام مناسب را نمایش بده
+    echo "OK"
+    sudo dds-tunnel
+fi
+
+        echo -e "${RED}Flushing all iptables rules...${RESET}"
+        sudo iptables -F
+        sudo iptables -X
+        sudo iptables -t nat -F
+        sudo iptables -t nat -X
+        sudo iptables -t mangle -F
+        sudo iptables -t mangle -X
+        sudo iptables -P INPUT ACCEPT
+        sudo iptables -P FORWARD ACCEPT
+        sudo iptables -P OUTPUT ACCEPT
+
+        # Save iptables rules after flushing
+        echo -e "${GREEN}Saving iptables rules after flushing...${RESET}"
+        sudo iptables-save | sudo tee /etc/iptables/rules.v4
+
+        # Reset ip forwarding status
+        echo -e "${GREEN}Resetting IP forwarding status...${RESET}"
+        echo "net.ipv4.ip_forward=0" | sudo tee /etc/sysctl.d/30-ip_forward.conf
+        sudo sysctl --system
+        sudo dds-tunnel
+
+        ;;
+    6)  
         echo -e "${CYAN}Exiting...${RESET}"
         exit 0
         ;;
