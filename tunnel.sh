@@ -9,6 +9,7 @@ RESET=$(tput sgr0)
 
 # ASCII Art for "DailyDigitalSkills"
 echo -e "${RED}"
+echo "-----------------------------------------------------------------------------"
 echo "  _____        _ _       _____  _       _ _        _  _____ _    _ _ _     "
 echo " |  __ \      (_) |     |  __ \(_)     (_) |      | |/ ____| |  (_) | |    "
 echo " | |  | | __ _ _| |_   _| |  | |_  __ _ _| |_ __ _| | (___ | | ___| | |___ "
@@ -17,13 +18,17 @@ echo " | |__| | (_| | | | |_| | |__| | | (_| | | || (_| | |____) |   <| | | \__ 
 echo " |_____/ \___|_|_|\__, |_____/|_|\__, |_|\__\__,_|_|_____/|_|\_\_|_|_|___/"
 echo "                    __/ |          __/ |                                   "
 echo "                   |___/          |___/                                    "
+echo "-----------------------------------------------------------------------------"
+echo "------------------------ Youtube : @DailyDigitalSkills "------------------------
+echo "-----------------------------------------------------------------------------"
+
 echo -e "${RESET}"
 
 # Display menu and prompt user for input
 echo -e "${CYAN}1. Configure iptables for both TCP and UDP"
 echo "2. Flush all iptables rules"
 echo "3. Exit${RESET}"
-read -p "${BLUE}Please select an option: ${RESET}" choice
+read -p "${GREEN}Please select an option: ${RESET}" choice
 
 case $choice in
     1)
