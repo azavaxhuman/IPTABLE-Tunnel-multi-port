@@ -13,6 +13,7 @@ apt install -y iptables iptables-persistent
 
 # Create symbolic link for iptables-dds script
 # به داخل پوشه مخزن می‌رویم
+mkdir /root/dds-tunnel
 cd /root/dds-tunnel
 
 # ساخت لینک نمادین با نام dds-tunnel که به tunnel.sh اشاره دارد
