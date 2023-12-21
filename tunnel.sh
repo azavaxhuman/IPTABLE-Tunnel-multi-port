@@ -207,26 +207,23 @@ case $choice in
     sudo dds-tunnel
 
         ;;
-        6)
-        # Flush all iptables rules
+    6)
 
-        #!/bin/bash
+    #Unistall
+    read -p "Are You Sure to Unistall DDS-Tunnel? (${GREEN}yes${RESET}/${RED}no${RESET}): " answer
 
-# درخواست ورودی از کاربر
-read -p "Are You Sure to Unistall DDS-Tunnel? (${GREEN}yes${RESET}/${RED}no${RESET}): " answer
 
-# بررسی جواب کاربر
-if [ "$answer" == "yes" ]; then
+    if [ "$answer" == "yes" ]; then
     # اگر جواب yes بود، دستورات مورد نظر را اجرا کن
     echo "Oh ! Ok , No problem!"
     sudo unlink /usr/local/bin/dds-tunnel
     sudo rm -rf /root/dds-tunnel/
     # اینجا دستورات مورد نظر را قرار دهید
-else
+    else
     # اگر جواب yes نبود، پیام مناسب را نمایش بده
     echo "OK"
     sudo dds-tunnel
-fi
+    fi
         ;;
     7)  
         echo -e "${CYAN}Exiting...${RESET}"
