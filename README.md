@@ -9,9 +9,11 @@
 
 
 ## About The Project
-<center>
-![Screen Shot](/menu.JPG)
-</center>
+<p align="center">
+  <a href="https://github.com/azavaxhuman/MarzbanInboundGenerator">
+    <img src="menu.JPG" alt="Logo"  >
+  </a>
+</p>
 
 ساخت تانل IPTABLE در دو حالت مختلف <br>
 1.مالتی پورت(فقط پورت های خاص)<br>
