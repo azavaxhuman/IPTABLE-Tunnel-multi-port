@@ -17,8 +17,8 @@ cd /root/dds-tunnel
 
 # ساخت لینک نمادین با نام dds-tunnel که به tunnel.sh اشاره دارد
 ln -s "$(pwd)/tunnel.sh" /usr/local/bin/dds-tunnel
-
+echo "Installation completed. You can now use 'dds-tunnel' command."
 # تغییر مجوزهای اجرایی اسکریپت
 chmod +x tunnel.sh
 sudo bash tunnel.sh
-echo "Installation completed. You can now use 'dds-tunnel' command."
+
