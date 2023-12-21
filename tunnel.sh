@@ -188,7 +188,7 @@ case $choice in
         INSTALL_PATH="/root/dds-tunnel"
 
         # مسیری که مخزن در آن clone شده است
-        CLONE_PATH="$INSTALL_PATH/$REPO_NAME"
+        CLONE_PATH="$INSTALL_PATH"
 
         # اگر مخزن قبلاً clone نشده باشد، آن را clone کنید
         if [ ! -d "$CLONE_PATH" ]; then
