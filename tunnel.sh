@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # ANSI color codes
-GREEN='\033[1;32m'
-BLUE='\033[1;34m'
-CYAN='\033[1;36m'
-RED='\033[1;31m'
-RESET='\033[0m'
+GREEN=$(tput setaf 2)
+BLUE=$(tput setaf 4)
+CYAN=$(tput setaf 6)
+RED=$(tput setaf 1)
+RESET=$(tput sgr0)
 
 # ASCII Art for "DailyDigitalSkills"
 echo -e "${RED}"
