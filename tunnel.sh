@@ -26,8 +26,11 @@ echo -e "${RESET}"
 
 # Display menu and prompt user for input
 echo -e "${CYAN}1. Configure iptables for both TCP and UDP"
+echo "                                                "
 echo "2. Flush all iptables rules"
+echo "                                                "
 echo "3. Exit${RESET}"
+echo "                                                "
 read -p "${GREEN}Please select an option: ${RESET}" choice
 
 case $choice in
