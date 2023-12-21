@@ -58,6 +58,11 @@ case $choice in
         echo -e "${GREEN}Saving iptables rules...${RESET}"
         sudo mkdir -p /etc/iptables/
         sudo iptables-save | sudo tee /etc/iptables/rules.v4
+        echo -e "${GREEN}---------------------------------------------------------${RESET}"
+        echo -e "${GREEN}                                                 ${RESET}"
+        echo -e "${GREEN}Great ! Tunnel was established${RESET}"
+        echo -e "${GREEN}                                                 ${RESET}"
+        echo -e "${GREEN}---------------------------------------------------------${RESET}"
         ;;
     2)
         # Flush all iptables rules
