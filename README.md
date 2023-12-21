@@ -1,8 +1,5 @@
 # IPTABLE Tunnel multi port
  
-```sh
-git clone https://github.com/azavaxhuman/IPTABLE-Tunnel-multi-port.git /root/dds-tunnel && chmod +x /root/dds-tunnel/install.sh && /root/dds-tunnel/install.sh
-```
 
 <br/>
 <p align="center">
@@ -15,13 +12,16 @@ git clone https://github.com/azavaxhuman/IPTABLE-Tunnel-multi-port.git /root/dds
 
 ![Screen Shot](/menu.JPG)
 
-ساخت تانل IPTABLE در دو 
-1.حالت مالتی پورت(فقط پورت های خاص)
+ساخت تانل IPTABLE در دو <br>
+1.حالت مالتی پورت(فقط پورت های خاص)<br>
 2. همه ی پورت ها (بجز پورت های سفارشی توسسط کاربر )
 <br>
 
-
+<br>
 __________
+```sh
+git clone https://github.com/azavaxhuman/IPTABLE-Tunnel-multi-port.git /root/dds-tunnel && chmod +x /root/dds-tunnel/install.sh && /root/dds-tunnel/install.sh
+```
 
 
 ## YouTube 
