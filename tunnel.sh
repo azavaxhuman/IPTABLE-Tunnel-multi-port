@@ -169,28 +169,6 @@ else
     echo "OK"
     sudo dds-tunnel
 fi
-
-        echo -e "${RED}Flushing all iptables rules...${RESET}"
-        sudo iptables -F
-        sudo iptables -X
-        sudo iptables -t nat -F
-        sudo iptables -t nat -X
-        sudo iptables -t mangle -F
-        sudo iptables -t mangle -X
-        sudo iptables -P INPUT ACCEPT
-        sudo iptables -P FORWARD ACCEPT
-        sudo iptables -P OUTPUT ACCEPT
-
-        # Save iptables rules after flushing
-        echo -e "${GREEN}Saving iptables rules after flushing...${RESET}"
-        sudo iptables-save | sudo tee /etc/iptables/rules.v4
-
-        # Reset ip forwarding status
-        echo -e "${GREEN}Resetting IP forwarding status...${RESET}"
-        echo "net.ipv4.ip_forward=0" | sudo tee /etc/sysctl.d/30-ip_forward.conf
-        sudo sysctl --system
-        sudo dds-tunnel
-
         ;;
     6)  
         echo -e "${CYAN}Exiting...${RESET}"
