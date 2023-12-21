@@ -2,13 +2,14 @@
 
 # ANSI color codes
 GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
 BLUE=$(tput setaf 4)
 CYAN=$(tput setaf 6)
 RED=$(tput setaf 1)
 RESET=$(tput sgr0)
 
 # ASCII Art for "DailyDigitalSkills"
-echo -e "${RED}"
+echo -e "${BLUE}"
 echo "-----------------------------------------------------------------------------"
 echo "  _____        _ _       _____  _       _ _        _  _____ _    _ _ _     "
 echo " |  __ \      (_) |     |  __ \(_)     (_) |      | |/ ____| |  (_) | |    "
@@ -18,18 +19,19 @@ echo " | |__| | (_| | | | |_| | |__| | | (_| | | || (_| | |____) |   <| | | \__ 
 echo " |_____/ \___|_|_|\__, |_____/|_|\__, |_|\__\__,_|_|_____/|_|\_\_|_|_|___/"
 echo "                    __/ |          __/ |                                   "
 echo "                   |___/          |___/                                    "
+echo -e "${RESET}"
+echo -e "${RED}"
 echo "-----------------------------------------------------------------------------"
 echo "------------------------ Youtube : @DailyDigitalSkills ----------------------"
 echo "-----------------------------------------------------------------------------"
-
 echo -e "${RESET}"
 
 # Display menu and prompt user for input
-echo -e "${CYAN}1. Configure iptables for both TCP and UDP"
+echo -e "${CYAN}1. Configure iptables for both TCP and UDP${RESET}"
 echo "                                                "
-echo "2. Flush all iptables rules"
+echo "${YELLOW}2. Flush all iptables rules${RESET}"
 echo "                                                "
-echo "3. Exit${RESET}"
+echo "${RED}3. Exit${RESET}"
 echo "                                                "
 read -p "${GREEN}Please select an option: ${RESET}" choice
 
