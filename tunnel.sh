@@ -27,11 +27,13 @@ echo "--------------------------------------------------------------------------
 echo -e "${RESET}"
 
 # Display menu and prompt user for input
-echo -e "${CYAN}1. Configure iptables for both TCP and UDP${RESET}"
+echo -e "${CYAN}1. Multi-Port Tunnel(for both TCP and UDP)${RESET}"
 echo "                                                "
-echo "${YELLOW}2. Flush all iptables rules${RESET}"
+echo -e "${CYAN}2. Tunnel All Ports (Except for selected ports)${RESET}"
 echo "                                                "
-echo "${RED}3. Exit${RESET}"
+echo "${YELLOW}3. Flush all iptables rules${RESET}"
+echo "                                                "
+echo "${RED}4. Exit${RESET}"
 echo "                                                "
 read -p "${GREEN}Please select an option: ${RESET}" choice
 
@@ -70,11 +72,43 @@ case $choice in
         sudo iptables-save | sudo tee /etc/iptables/rules.v4
         echo -e "${GREEN}---------------------------------------------------------${RESET}"
         echo -e "${GREEN}                                                 ${RESET}"
-        echo -e "${GREEN}Great ! Tunnel was established${RESET}"
+        echo -e "${GREEN}Great ! Multi-Port Tunnel was established${RESET}"
         echo -e "${GREEN}                                                 ${RESET}"
         echo -e "${GREEN}---------------------------------------------------------${RESET}"
         ;;
     2)
+        read -p "${BLUE}Enter the Relay server IP (this Server) address (e.g. 1.1.1.1): ${RESET}" RIP
+        # Get SSH ports from the user
+        # Get the main server IP address from the user
+        read -p "${BLUE}Enter the main server IP address (e.g. 2.2.2.2): ${RESET}" IP
+        # Get SSH ports from the user
+        read -p "${BLUE}Enter the excluded ports (comma-separated, e.g. 22,51): ${RESET}" PORTS
+        # Enable IP forwarding without reboot
+        echo -e "${GREEN}Enabling IP forwarding...${RESET}"
+        echo "net.ipv4.ip_forward=1" | sudo tee /etc/sysctl.d/30-ip_forward.conf
+        sudo sysctl --system
+
+        # Install required packages
+        echo -e "${GREEN}Installing required packages...${RESET}"
+        sudo apt install iptables iptables-persistent -y
+
+        sudo iptables -t nat -A PREROUTING -p tcp --match multiport --dports $PORTS -j DNAT --to-destination $RIP
+        sudo iptables -t nat -A PREROUTING -p udp --match multiport --dports $PORTS -j DNAT --to-destination $RIP
+        sudo iptables -t nat -A PREROUTING -p tcp -j DNAT --to-destination $IP
+        sudo iptables -t nat -A PREROUTING -p udp -j DNAT --to-destination $IP
+        sudo iptables -t nat -A POSTROUTING -j MASQUERADE
+
+        # Save iptables rules
+        echo -e "${GREEN}Saving iptables rules...${RESET}"
+        sudo mkdir -p /etc/iptables/
+        sudo iptables-save | sudo tee /etc/iptables/rules.v4
+        echo -e "${GREEN}---------------------------------------------------------${RESET}"
+        echo -e "${GREEN}                                                 ${RESET}"
+        echo -e "${GREEN}The tunnel was established for all ports except $PORTS ${RESET}"
+        echo -e "${GREEN}                                                 ${RESET}"
+        echo -e "${GREEN}---------------------------------------------------------${RESET}"
+        ;;
+    3)
         # Flush all iptables rules
         echo -e "${RED}Flushing all iptables rules...${RESET}"
         sudo iptables -F
@@ -96,7 +130,7 @@ case $choice in
         echo "net.ipv4.ip_forward=0" | sudo tee /etc/sysctl.d/30-ip_forward.conf
         sudo sysctl --system
         ;;
-    3)  
+    4)  
         echo -e "${CYAN}Exiting...${RESET}"
         exit 0
         ;;
