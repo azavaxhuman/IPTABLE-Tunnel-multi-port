@@ -35,9 +35,11 @@ echo "${YELLOW}3. Display tables related to the tunnel${RESET}"
 echo "                                                "
 echo "${YELLOW}4. Flush all iptables rules${RESET}"
 echo "                                                "
-echo "${RED}5. Unistall !${RESET}"
+echo "${BLUE}5. Update${RESET}"
 echo "                                                "
-echo "${RED}6. Exit${RESET}"
+echo "${RED}6. Unistall !${RESET}"
+echo "                                                "
+echo "${RED}7. Exit${RESET}"
 echo "                                                "
 read -p "${GREEN}Please select an option: ${RESET}" choice
 
@@ -148,7 +150,30 @@ case $choice in
         sudo dds-tunnel
 
         ;;
-        5)
+            5)
+#Update
+        echo -e "${RED}Updating...${RESET}"
+        REPO_NAME="IPTABLE-Tunnel-multi-port"
+
+        # مسیری که می‌خواهید مخزن در آن clone شود
+        INSTALL_PATH="/root/dds-tunnel"
+
+        # مسیری که مخزن در آن clone شده است
+        CLONE_PATH="$INSTALL_PATH/$REPO_NAME"
+
+        # اگر مخزن قبلاً clone نشده باشد، آن را clone کنید
+        if [ ! -d "$CLONE_PATH" ]; then
+    git clone "https://github.com/azavaxhuman/$REPO_NAME.git" "$CLONE_PATH"
+    else
+    # اگر مخزن قبلاً clone شده باشد، آن را به‌روزرسانی کنید
+    cd "$CLONE_PATH" || exit
+    git pull origin master
+    fi
+    echo -e "${GREEN}Done...${RESET}"
+    sudo dds-tunnel
+
+        ;;
+        6)
         # Flush all iptables rules
 
         #!/bin/bash
@@ -170,7 +195,7 @@ else
     sudo dds-tunnel
 fi
         ;;
-    6)  
+    7)  
         echo -e "${CYAN}Exiting...${RESET}"
         exit 0
         ;;
