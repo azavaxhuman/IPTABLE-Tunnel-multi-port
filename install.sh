@@ -7,7 +7,6 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # Install required packages
-echo "Installing required packages..."
 
 # Create symbolic link for iptables-dds script
 # به داخل پوشه مخزن می‌رویم
