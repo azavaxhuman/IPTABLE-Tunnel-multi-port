@@ -31,9 +31,11 @@ echo -e "${CYAN}1. Multi-Port Tunnel(for both TCP and UDP)${RESET}"
 echo "                                                "
 echo -e "${CYAN}2. Tunnel All Ports (Except for selected ports)${RESET}"
 echo "                                                "
-echo "${YELLOW}3. Flush all iptables rules${RESET}"
+echo "${YELLOW}3. Display tables related to the tunnel${RESET}"
 echo "                                                "
-echo "${RED}4. Exit${RESET}"
+echo "${YELLOW}4. Flush all iptables rules${RESET}"
+echo "                                                "
+echo "${RED}5. Exit${RESET}"
 echo "                                                "
 read -p "${GREEN}Please select an option: ${RESET}" choice
 
@@ -108,7 +110,13 @@ case $choice in
         echo -e "${GREEN}                                                 ${RESET}"
         echo -e "${GREEN}---------------------------------------------------------${RESET}"
         ;;
-    3)
+     3)
+        # Show iptables rules
+        echo -e "${RED}Chains and rules related to the nat table${RESET}"
+        echo -e "${GREEN}---------------------------------------------------------${RESET}"
+        sudo iptables -t nat -L -v --line-numbers
+        ;;
+    4)
         # Flush all iptables rules
         echo -e "${RED}Flushing all iptables rules...${RESET}"
         sudo iptables -F
@@ -130,7 +138,7 @@ case $choice in
         echo "net.ipv4.ip_forward=0" | sudo tee /etc/sysctl.d/30-ip_forward.conf
         sudo sysctl --system
         ;;
-    4)  
+    5)  
         echo -e "${CYAN}Exiting...${RESET}"
         exit 0
         ;;
