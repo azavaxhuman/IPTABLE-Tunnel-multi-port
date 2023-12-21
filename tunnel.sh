@@ -196,7 +196,7 @@ case $choice in
     else
     # اگر مخزن قبلاً clone شده باشد، آن را به‌روزرسانی کنید
     cd "$CLONE_PATH" || exit
-    git pull origin master
+    git pull origin main
     fi
     echo -e "${GREEN}Done...${RESET}"
     sudo dds-tunnel
