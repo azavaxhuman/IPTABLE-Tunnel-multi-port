@@ -9,8 +9,9 @@
 
 
 ## About The Project
-
+<center>
 ![Screen Shot](/menu.JPG)
+</center>
 
 ساخت تانل IPTABLE در دو حالت مختلف <br>
 1.مالتی پورت(فقط پورت های خاص)<br>
