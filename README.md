@@ -66,9 +66,3 @@ Distributed under the GPL-3.0 License. See [LICENSE](https://github.com/azavaxhu
 
 * **AzavaxHuman** - *Daily Digital Skills* - [AzavaxHuman](https://github.com/azavaxhuman) - **
 
-## Acknowledgements
-
-* [Project X](https://xtls.github.io/)
-* [Marzban](https://github.com/Gozargah/Marzban)
-* []()
-
