@@ -114,7 +114,10 @@ case $choice in
         # Show iptables rules
         echo -e "${RED}Chains and rules related to the nat table${RESET}"
         echo -e "${GREEN}---------------------------------------------------------${RESET}"
+        echo -e "${GREEN}                                                 ${RESET}"
         sudo iptables -t nat -L -v --line-numbers
+        echo -e "${GREEN}                                                 ${RESET}"
+        echo -e "${GREEN}---------------------------------------------------------${RESET}"
         ;;
     4)
         # Flush all iptables rules
