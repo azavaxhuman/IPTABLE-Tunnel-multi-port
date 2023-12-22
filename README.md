@@ -10,7 +10,7 @@
 
 ## About The Project
 <p align="center">
-  <a href="https://github.com/azavaxhuman/MarzbanInboundGenerator">
+  <a href="https://github.com/azavaxhuman/IPTABLE-Tunnel-multi-port">
     <img src="menu.JPG" alt="Logo"  >
   </a>
 </p>
