@@ -134,7 +134,7 @@ case $choice in
         ;;
     3)
         
-        sudo iptables -A INPUT icmp -j DROP
+        sudo iptables -A INPUT -p icmp -j DROP
 
         # Save iptables rules
         echo -e "${GREEN}Saving iptables rules...${RESET}"
