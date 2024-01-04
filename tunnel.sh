@@ -31,15 +31,17 @@ echo -e "${CYAN}1. Multi-Port Tunnel(for both TCP and UDP)${RESET}"
 echo "                                                "
 echo -e "${CYAN}2. Tunnel All Ports (Except for selected ports)${RESET}"
 echo "                                                "
-echo "${YELLOW}3. Display tables related to the tunnel${RESET}"
+echo "${YELLOW}3. Block Ping ${RESET}"
 echo "                                                "
-echo "${YELLOW}4. Flush all iptables rules${RESET}"
+echo "${YELLOW}4. Display tables related to the tunnel${RESET}"
 echo "                                                "
-echo "${BLUE}5. Update${RESET}"
+echo "${YELLOW}5. Flush all iptables rules${RESET}"
 echo "                                                "
-echo "${RED}6. Unistall !${RESET}"
+echo "${BLUE}6. Update${RESET}"
 echo "                                                "
-echo "${RED}7. Exit${RESET}"
+echo "${RED}7. Unistall !${RESET}"
+echo "                                                "
+echo "${RED}8. Exit${RESET}"
 echo "                                                "
 read -p "${GREEN}Please select an option: ${RESET}" choice
 
@@ -130,7 +132,29 @@ case $choice in
         exit 0
         fi
         ;;
-     3)
+    3)
+        
+        sudo iptables -A INPUT icmp -j DROP
+
+        # Save iptables rules
+        echo -e "${GREEN}Saving iptables rules...${RESET}"
+        sudo mkdir -p /etc/iptables/
+        sudo iptables-save | sudo tee /etc/iptables/rules.v4
+        echo -e "${GREEN}---------------------------------------------------------${RESET}"
+        echo -e "${GREEN}                                                 ${RESET}"
+        echo -e "${GREEN}               Ping is closed                      $PORTS ${RESET}"
+        echo -e "${GREEN}                                                 ${RESET}"
+        echo -e "${GREEN}---------------------------------------------------------${RESET}"
+        read -p "Back to Main menu? (${GREEN}y${RESET}/${RED}n${RESET}): " answer
+        if [ "$answer" == "y" ]; then
+        sudo dds-tunnel
+        else
+        echo "OK"
+        echo -e "${CYAN}Exiting...${RESET}"
+        exit 0
+        fi
+        ;;
+     4)
         # Show iptables rules
         echo -e "${RED}Chains and rules related to the nat table${RESET}"
         echo -e "${GREEN}---------------------------------------------------------${RESET}"
@@ -147,7 +171,7 @@ case $choice in
         exit 0
         fi
         ;;
-    4)
+    5)
         # Flush all iptables rules
         echo -e "${RED}Flushing all iptables rules...${RESET}"
         sudo iptables -F
@@ -184,7 +208,7 @@ case $choice in
         
 
         ;;
-            5)
+            6)
 #Update
         echo -e "${RED}Updating...${RESET}"
         REPO_NAME="IPTABLE-Tunnel-multi-port"
@@ -207,7 +231,7 @@ case $choice in
     sudo dds-tunnel
 
         ;;
-    6)
+    7)
 
     #Unistall
     read -p "Are You Sure to Unistall DDS-Tunnel? (${GREEN}yes${RESET}/${RED}no${RESET}): " answer
